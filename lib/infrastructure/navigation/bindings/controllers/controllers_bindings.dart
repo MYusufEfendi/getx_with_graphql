@@ -1,0 +1,2 @@
+export 'package:getx_with_graphql/infrastructure/navigation/bindings/controllers/detail.controller.binding.dart'; 
+export 'package:getx_with_graphql/infrastructure/navigation/bindings/controllers/detail.controller.binding.dart'; 

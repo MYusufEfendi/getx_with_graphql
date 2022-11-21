@@ -1,10 +1,9 @@
 import 'package:get/get.dart';
+import 'package:getx_with_graphql/app/graphql_strings.dart';
 
-import '../providers/get_data_provider_provider.dart';
+import '../providers/get_detail_provider.dart';
 
-class HomeController extends GetxController {
-  //TODO: Implement HomeController
-
+class DetailController extends GetxController {
   @override
   void onInit() {
     print("onInit");
@@ -12,13 +11,13 @@ class HomeController extends GetxController {
     super.onInit();
   }
 
-
   var list = [].obs;
   List<dynamic> characters = [];
   List posts = [];
+  var arguments = Get.arguments;
 
   void getData() {
-    getAllUsers().then((value) {
+    getDetail(id: arguments['id']).then((value) {
       list.clear();
       list.addAll(value);
     });

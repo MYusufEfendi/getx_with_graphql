@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:getx_with_graphql/infrastructure/navigation/routes.dart';
 
 import '../controllers/home_controller.dart';
 
@@ -24,27 +25,26 @@ class HomeView extends GetView<HomeController> {
                     childAspectRatio: (200 / 300),
                     crossAxisCount: 2,
                     children: List.generate(controller.list.length, (index) {
+                      var data = controller.list[index];
                       return Column(
                         children: [
-                          Expanded(
-                            child: Card(
-                                shape: const RoundedRectangleBorder(
-                                    side: BorderSide(color: Colors.red),
-                                    borderRadius: BorderRadius.all(
-                                      Radius.circular(10),
-                                    )),
-                                child: Image.network(
-                                  controller.list[index]['image'],
-                                  fit: BoxFit.fill,
-                                )
-                                // SizedBox(
-                                //   height: Get.height,
-                                //   width: Get.width,
-                                //   child: const Center(
-                                //     child: Text('Testing'),
-                                //   ),
-                                // ),
-                                ),
+                          InkWell(
+                            onTap: () {
+                              Get.toNamed(Routes.DETAIL,
+                                  arguments: {'id': data['id']});
+                            },
+                            child: Expanded(
+                              child: Card(
+                                  shape: const RoundedRectangleBorder(
+                                      side: BorderSide(color: Colors.red),
+                                      borderRadius: BorderRadius.all(
+                                        Radius.circular(10),
+                                      )),
+                                  child: Image.network(
+                                    controller.list[index]['image'],
+                                    fit: BoxFit.fitHeight,
+                                  )),
+                            ),
                           ),
                           const SizedBox(
                             height: 2,
